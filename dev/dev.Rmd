@@ -1,0 +1,41 @@
+ File to develop functions and text
+
+```{r ll}
+sto::ll("dplyr sto stringr")
+options(browser = "firefox")
+```
+```{r available}
+available::available("codifyR") # TRUE
+```
+```{r usethis::use_readme_rm /  vignette}
+usethis::use_readme_rmd()
+devtools::build_vignettes("vignettes")
+These files can be checked into version control, so they can be viewed with browseVignettes() and vignette() if the package has been loaded with load_all()
+browseVignettes() # mostra todos vignetes de todos pacotes
+vignette()
+# usethis::use_readme_rmd()
+usethis::use_github()
+usethis::use_github_links() #  If a package is already connected to a remote GitHub repository, usethis::use_github_links() can be called to just add the relevant links to DESCRIPTION.'use_github_links()'
+# usethis::use_data_table() # creates all the boilerplate. https://usethis.r-lib.org/reference/use_data_table.html
+devtools::build_readme() # locates your README.Rmd and builds it into a README.md
+devtools::build_manual() # Create package pdf manual
+# usethis::use_pkgdown() # is a function you run once and it does the initial, minimal setup necessary to start using pkgdown:
+pkgdown::build_site_github_pages()
+# pkgdown::build_site() # is a function you’ll call repeatedly, to re-render your site locally. In an extremely barebones package, https://r-pkgs.org/website.html
+# devtools::build_site() # Execute pkgdown build_site in a package
+# build_site() is a shortcut for pkgdown::build_site()
+```
+
+
+codifyR can uses yaml format to store the categories 
+
+```{yml}
+category_name:
+  keys: words sepated by space, and compunded words (like "New York") binded by underscore, like "New_York".
+  color: lightgray
+  description: A brief descritpion of what this category is
+```
+
+
+
+
