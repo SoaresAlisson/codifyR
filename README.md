@@ -45,11 +45,29 @@ alt="Exemple of text codified with {codifyR}" />
 
 You can install the development version of codifyR like so:
 
+Option 1: using
+[devtools](https://devtools.r-lib.org/reference/install.html)
+
 ``` r
+# install.packages("devtools")
 devtools::install_github("SoaresAlisson/codifyR")
 ```
 
-See the vignettes
+``` r
+# install.packages("pak")
+pak::pak("SoaresAlisson/txtnet")
+```
+
+Option 2: install using
+[{pak}](https://pak.r-lib.org/reference/pkg_install.html) package
+
+``` r
+# install.packages("pak")
+pak::pkg_install("SoaresAlisson/txtnet")
+```
+
+See the vignettes and function references at the [web page of the
+package](https://soaresalisson.github.io/codifyR/)
 
 ## TODO - Future improvements
 
