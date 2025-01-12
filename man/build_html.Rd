@@ -4,12 +4,14 @@
 \alias{build_html}
 \title{build html page from pure text}
 \usage{
-build_html(text, title_page = "codifyR")
+build_html(text, title_page = "codifyR", name = NA)
 }
 \arguments{
 \item{text}{text to be tagged}
 
 \item{title_page}{title of the page}
+
+\item{name}{name of the .html file. If empty, it returns the html code.}
 }
 \description{
 build html page from pure text. It must be supplied a text, generally from color_text() function.

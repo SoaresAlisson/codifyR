@@ -7,19 +7,20 @@
 #'
 #' @param text text to be tagged
 #' @param title_page title of the page
+#' @param name name of the .html file. If empty, it returns the html code.
 #'
 #' @export
-build_html <- function(text, title_page = "codifyR") {
-tex_init <- f('<!DOCTYPE html>
-<html>
-<head>
-<title>{title_page}</title>
-</head>
-<body>')
+build_html <- function(text, title_page = "codifyR", name = NA) {
+  tex_init <- f('<!DOCTYPE html><html><head><title>{title_page}</title></head><body>')
 
-tex_end <- r"(
-</body>
-</html>)"
+  tex_end <- r"( </body></html>)"
 
-c(tex_init, text, tex_end)
+  html_page <- c(tex_init, text, tex_end)
+
+  if( is.na( name) ){
+    html_page 
+  } else{
+    name <- gsub(".html$", "",  name)
+    writeLines(html_page , paste0(name, ".html"))
+  } 
 }

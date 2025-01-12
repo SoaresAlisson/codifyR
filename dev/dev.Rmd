@@ -4,6 +4,12 @@
 sto::ll("dplyr sto stringr")
 options(browser = "firefox")
 ```
+```{r text}
+library(sotu)
+# the metadata, to see which discourse we want.
+# sotu_meta
+text <- sotu_text[240]
+```
 ```{r available}
 available::available("codifyR") # TRUE
 ```
@@ -27,7 +33,7 @@ pkgdown::build_site_github_pages()
 # build_site() is a shortcut for pkgdown::build_site()
 ```
 ## country code
-```{r}
+```{r countrycode select}
 library(countrycode)
 codelist_panel |>
   select(ar5) |>
@@ -45,24 +51,148 @@ continent_country <- codelist_panel |>
 continent_country <- codelist_panel |>
   select(eurocontrol_pru, country.name.en) |>
   unique() |>
-  arrange(eurocontrol_pru)
+  arrange(eurocontrol_pru) |> 
+  rename(continent = eurocontrol_pru, country = country.name.en)
 ```
 col 1: categoria, 
 col 2: termos ou padrão, 
-col 3: descrição que irá aparecer quando o mouse passar por cima da palavra. Se vazio, usa a coluna 1
-```{r}
+col 3: cor
+col 4: descrição que irá aparecer quando o mouse passar por cima da palavra. Se vazio, usa a coluna 1
+```{r DF}
 # lapply(color_text)
 DF <- continent_country
+DF |> filter()
+```
+```{r fun colorize}
+colorize <- function(DF, colors = color_palette ) {
+# todo checar n de colunas?
+  colors  <- colors[1:nrow(DF)]
+
+  DF |> dplyr::mutate(color = colors )
+# colors  
+}
+
+colorize(DF2)  |> pull(color)
+```
+```{r DF2  }
 cols <- colnames(DF)
-DF |>
+DF2 <- DF |>
   group_by(continent) |>
   # group_by( !!{{cols[1]}} ) |>
   # group_by( !!cols[1] ) |>
   # with(cols[1], group_by() )  |>
   # summarise(items := !!{{paste(cols[2]}} , collapse = "|"))
-  summarise(items = paste(eval(sym(cols[2])), collapse = "|"))
+  summarise(items = paste(eval(sym(cols[2])), collapse = "|")) |> 
 # summarise(items = paste(country.name.en, collapse = "|"))
+  colorize(color_palette3) |> 
+  # as.data.frame() |> 
+  nothing()
 ```
+```{r color_text}
+text  |>
+ color_text( 
+    pattern = DF2[1,2], 
+    # color_txt = "yellow", 
+    color_txt = DF2[1, "color"], 
+    mouseover_txt = DF2[1,1]) |> 
+ color_text( 
+    pattern = DF2[2,2], 
+    color_txt = DF2[2, "color"], 
+    mouseover_txt = DF2[2,1]) |> 
+ color_text( 
+    pattern = DF2[3,2], 
+    color_txt = DF2[3, "color"], 
+    mouseover_txt = DF2[3,1]) |> 
+ color_text(  
+    pattern = DF2[4,2], 
+    color_txt = DF2[4, "color"], 
+    mouseover_txt = DF2[4,1]) |> 
+ color_text(  
+    pattern = DF2[5,2], 
+    color_txt = DF2[5, "color"], 
+    mouseover_txt = DF2[5,1]) |> 
+ color_text(  
+    pattern = DF2[6,2], 
+    color_txt = DF2[6, "color"], 
+    mouseover_txt = DF2[6,1]) |> 
+ color_text(  
+    pattern = DF2[7,2], 
+    color_txt = DF2[7, "color"], 
+    mouseover_txt = DF2[7,1]) |> 
+ color_text(  
+    pattern = DF2[8,2], 
+    color_txt = "yellow", 
+    # color_txt = DF2[8, "color"], 
+    mouseover_txt = DF2[8,1]) |> 
+ # color_text(  
+ #    # pattern = DF2[8,2], 
+ #    pattern = "Antigua & Barbuda|Argentina|Bahamas|Barbados|Belize|Bolivia|Brazil|Chile|Colombia|Costa Rica|Cuba|Dominica|Dominican Republic|Ecuador|El Salvador|Grenada |Guatemala|Guyana|Haiti|Honduras|Jamaica|Mexico|Nicaragua|Panama|Paraguay|Peru|St. Kitts & Nevis|St. Lucia|St. Vincent & Grenadines|Suriname|Trinidad & Tobago|Uruguay|Venezuela", 
+ #    color_txt = DF2[8, "color"], 
+ #    # mouseover_txt = DF2[8,1]) |> 
+ #    mouseover_txt = "Sudamerica") |> 
+# }) |> unlist()  |> paste(collapse = " ")  |> 
+  build_html(title_page = "SOTU - Trump", name = "./dev/sotu_.html")
+```
+```{r color_text debug}
+text  |>
+ # color_text( 
+ #    pattern = DF2[2,2], 
+ #    color_txt = DF2[2, "color"], 
+ #    mouseover_txt = DF2[2,1]) |> 
+ # color_text(  
+ #    pattern = DF2[6,2], 
+ #    color_txt = DF2[6, "color"], 
+ #    mouseover_txt = DF2[6,1]) |> 
+ color_text(  
+    # pattern = DF2[8,2], 
+    pattern = "Antigua & Barbuda|Argentina|Bahamas|Barbados|Belize|Bolivia|Brazil|Chile|Colombia|Costa Rica|Cuba|Dominica|Dominican Republic|Ecuador|El Salvador|Grenada |Guatemala|Guyana|Haiti|Honduras|Jamaica|Mexico|Nicaragua|Panama|Paraguay|Peru|St. Kitts & Nevis|St. Lucia|St. Vincent & Grenadines|Suriname|Trinidad & Tobago|Uruguay|Venezuela", 
+    color_txt = DF2[8, "color"], 
+    # mouseover_txt = DF2[8,1]) |> 
+    mouseover_txt = "Sudamerica") |> 
+# }) |> unlist()  |> paste(collapse = " ")  |> 
+  build_html(title_page = "SOTU - Trump", name = "./dev/sotu_.html")
+```
+```{r fun}
+# x =1
+text2 <- text
+  # text2 <-
+  lapply(1:nrow(DF2), \(x) {
+ color_text(text = text2 , 
+    pattern = DF2[x,2], 
+    # color_txt = "yellow", 
+    color_txt = DF2[x, "color"], 
+    mouseover_txt = DF2[x,1])
+}) |> unlist()  |> paste(collapse = " ")  |> 
+  build_html(title_page = "SOTU - Trump", name = "./dev/sotu_.html")
+```
+```{r fun}
+codify <- function(text, categories ) {
+  # categories <-  DF2[1:8,]
+  categories <- categories |> as.data.frame()
+
+  for (i in 1:nrow(categories) ){
+    # message(i, "|#|", DF2[i,2], "|#|", DF2[i,"color"], "|>|",  DF2[i,1])
+    # message(" ")
+    text <- text |>  
+      color_text(  
+        pattern = DF2[i,2], 
+        color_txt = DF2[i, "color"], 
+        mouseover_txt = DF2[i,1]) 
+  }
+  return(text)
+}
+
+codify(text, DF2[1:8,]) |> 
+  build_html(title_page = "SOTU - Trump", name = "./dev/sotu_.html")
+
+
+```
+
+
+
+L
+
+
 
 
 

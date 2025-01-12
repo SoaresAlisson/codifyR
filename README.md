@@ -53,11 +53,6 @@ Option 1: using
 devtools::install_github("SoaresAlisson/codifyR")
 ```
 
-``` r
-# install.packages("pak")
-pak::pak("SoaresAlisson/txtnet")
-```
-
 Option 2: install using
 [{pak}](https://pak.r-lib.org/reference/pkg_install.html) package
 

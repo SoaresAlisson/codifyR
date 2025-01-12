@@ -28,18 +28,8 @@ Coding text, annotate text or text tagging in qualitative analysis means:
 
 The goal of {codifyR} is to tag text with categories. Coding text with colors, according to a category, make it easy to read and find what you want in a text, understanding better what is going on.
 
-## Installation
 
-You can install the development version of codifyR like so:
-
-```{r}
-#| eval: false
-devtools::install_github("SoaresAlisson/codifyR")
-```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
+Loading the package
 
 ```{r example}
 library(codifyR)
@@ -92,7 +82,8 @@ If we open the sotu.html file in the webbrowser (Firefox, Chrome, Safari, etc.),
 ![SOTU Trump mentioning "China"](sotu_trump_china.png)
 
 We can also increment it even more.
-To check the color names in R, check [this link](https://r-charts.com/colors/), or [this](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf), or search in internet for "R color palettes".
+The color names must be the color names availabe in .html, not the R color names availabe in `colors()`. There are 140 avaialable in all of them. Check the [complete list here](https://www.w3schools.com/colors/colors_names.asp). Even better is to use the hex color instead of names.
+<!-- To check the color names in R, run `colors()` command, or check [this link](https://r-charts.com/colors/), or [this](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf), or search in internet for "R color palettes". -->
 For pattern, is possible to use regular expressions.
 The parameter mouseover_txt shows the text that will be shown when the mouse is over the word.
 
@@ -125,7 +116,8 @@ We go back to the webbrowser, and refresh it with F5 bottom. We get something li
 
 ![sotu Trump ex:2](sotu_trump_ex2.png)
 
-Lets use the package [countrycode](https://github.com/vincentarelbundock/countrycode) to get 
+Lets use the package [countrycode](https://github.com/vincentarelbundock/countrycode) to get information 
+
 ```{r}
 library(countrycode)
 ```
