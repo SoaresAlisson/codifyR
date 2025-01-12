@@ -10,6 +10,7 @@ available::available("codifyR") # TRUE
 ```{r usethis::use_readme_rm /  vignette}
 usethis::use_readme_rmd()
 devtools::build_vignettes("vignettes")
+devtools::build_vignettes("vignettes/codifing.Rmd")
 These files can be checked into version control, so they can be viewed with browseVignettes() and vignette() if the package has been loaded with load_all()
 browseVignettes() # mostra todos vignetes de todos pacotes
 vignette()
@@ -25,13 +26,53 @@ pkgdown::build_site_github_pages()
 # devtools::build_site() # Execute pkgdown build_site in a package
 # build_site() is a shortcut for pkgdown::build_site()
 ```
+## country code
+```{r}
+library(countrycode)
+codelist_panel |>
+  select(ar5) |>
+  count(ar5)
+codelist_panel |>
+  select(unhcr.region) |>
+  count(unhcr.region)
+codelist_panel |>
+  select(eurocontrol_pru) |>
+  count(eurocontrol_pru)
+continent_country <- codelist_panel |>
+  select(continent, country.name.en) |>
+  unique() |>
+  arrange(continent)
+continent_country <- codelist_panel |>
+  select(eurocontrol_pru, country.name.en) |>
+  unique() |>
+  arrange(eurocontrol_pru)
+```
+col 1: categoria, 
+col 2: termos ou padrão, 
+col 3: descrição que irá aparecer quando o mouse passar por cima da palavra. Se vazio, usa a coluna 1
+```{r}
+# lapply(color_text)
+DF <- continent_country
+cols <- colnames(DF)
+DF |>
+  group_by(continent) |>
+  # group_by( !!{{cols[1]}} ) |>
+  # group_by( !!cols[1] ) |>
+  # with(cols[1], group_by() )  |>
+  # summarise(items := !!{{paste(cols[2]}} , collapse = "|"))
+  summarise(items = paste(eval(sym(cols[2])), collapse = "|"))
+# summarise(items = paste(country.name.en, collapse = "|"))
+```
+
+
+
 
 
 codifyR can uses yaml format to store the categories 
 
 ```{yml}
 category_name:
-  keys: words sepated by space, and compunded words (like "New York") binded by underscore, like "New_York".
+  keys: words sepated by space, and compounded words (like "New York") binded by underscore, like "New_York".
   color: lightgray
   description: A brief descritpion of what this category is
 ```

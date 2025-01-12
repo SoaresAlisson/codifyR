@@ -12,5 +12,6 @@ build_html(text, title_page = "codifyR")
 \item{title_page}{title of the page}
 }
 \description{
-build html page from pure text
+build html page from pure text. It must be supplied a text, generally from color_text() function.
+It is possible to supply also the title of the page that will be shown in web browser.
 }

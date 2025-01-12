@@ -26,7 +26,7 @@ Coding text, annotate text or text tagging in qualitative analysis means:
 > Font: [Atlas.ti manual](https://doc.atlasti.com/QuicktourWin.v9/Codes/CodingData.html)
 
 
-The goal of {codifyR} is to tag text with categories.
+The goal of {codifyR} is to tag text with categories. Coding text with colors, according to a category, make it easy to read and find what you want in a text, understanding better what is going on.
 
 ## Installation
 
@@ -70,6 +70,7 @@ word_wanted = "China"
 text |> stringr::str_extract_all(word_wanted)
 ```
 Yes! It exist in text and occurs 5 times.
+Now let's codify/tag or simply color the words we want.
 
 ```{r page_html }
 page_html <- text |> 
@@ -88,7 +89,7 @@ writeLines(page_html, "sotu.html")
 ```
 If we open the sotu.html file in the webbrowser (Firefox, Chrome, Safari, etc.), this give us:
 
-![Sotu Trump China](sotu_trump_china.png)
+![SOTU Trump mentioning "China"](sotu_trump_china.png)
 
 We can also increment it even more.
 To check the color names in R, check [this link](https://r-charts.com/colors/), or [this](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf), or search in internet for "R color palettes".
@@ -101,19 +102,20 @@ page_html <- text |>
     "(?i)\\b(Chin|Iran|North Korea|Venezuela)\\w*\\b", # Regex pattern
     color_txt = "salmon", 
     mouseover_txt = "Countries taken as enemies" ) |>
-  color_text(pattern = "USA|U\\.S\\.A\\.|America|United States", # Regex pattern
+  color_text(pattern = "USA|U\\.S\\.|U\\.S\\.A\\.|America|United States", # Regex pattern
     color_txt = "lightblue", 
     mouseover_txt = "USA" ) |>
   color_text(pattern = 
-    "(?i)\\b(Hispanic|Mexic|Cuba|Hondur|Hait|Guatemal|El Salvador|Nicaragua)", # Regex pattern
-    color_txt = "lightblue", 
+    "(?i)\\b(Hispanic|Latin|Mexic|Cuba|Hondur|Hait|Guatemal|El Salvador|Nicaragua)", # Regex pattern
+    color_txt = "lightgreen", 
     mouseover_txt = "latin" ) |>
   color_text(pattern = "(?i)\\b(Middle East|Afghan|Iraq|Syria)", # Regex pattern
     color_txt = "orchid", 
     mouseover_txt = "Middle East" ) |>
+  # and given it is pure text, turn it into .html:
   build_html(title_page = "SOTU - Trump")
-
 ```
+
 ```{r writeLines html FALSE 2}
 #| eval: false
 writeLines(page_html, "sotu.html")
@@ -122,6 +124,13 @@ writeLines(page_html, "sotu.html")
 We go back to the webbrowser, and refresh it with F5 bottom. We get something like this:
 
 ![sotu Trump ex:2](sotu_trump_ex2.png)
+
+Lets use the package [countrycode](https://github.com/vincentarelbundock/countrycode) to get 
+```{r}
+library(countrycode)
+```
+
+
 
 # See also
 

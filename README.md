@@ -4,6 +4,9 @@
 # codifyR - coding text to qualitative analysis
 
 <!-- badges: start -->
+
+![R
+package](https://img.shields.io/badge/r-%23276DC3.svg?style=for-the-badge&logo=r&logoColor=white)
 <!-- badges: end -->
 
 **Package under development !!**
@@ -29,7 +32,7 @@ Coding text, annotate text or text tagging in qualitative analysis means
 > same time” (Friese, 2019). Font: [Atlas.ti
 > manual](https://doc.atlasti.com/QuicktourWin.v9/Codes/CodingData.html)
 
-The goal of codifyR is to tag tex with categories.
+The goal of codifyR is to tag text with categories.
 
 <figure>
 <img src="./vignettes/sotu_trump_ex2.png"
@@ -50,11 +53,13 @@ See the vignettes
 
 ## TODO - Future improvements
 
-- option do add a brief quantitative description of the category, and
-  words marked in the coded text or in a separated file.
-- Use vector and list object as input to the text tagger
+- Use dataframe or list object as input to the text tagger
 - import yaml file with dictionary of terms
-- Make easier to pickup a color
+- option do add a brief quantitative description of the categories and
+  words marked in two options: in the html coded text or in a separated
+  file.
+- Maybe to make easier to pickup a color
 - a live render with a shiny app
+- integrate with NER of SpacyR
 - Use Large Language Model, probably with {rollama}, helping to codify
   text.
