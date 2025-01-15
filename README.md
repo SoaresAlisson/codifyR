@@ -66,13 +66,20 @@ package](https://soaresalisson.github.io/codifyR/)
 
 ## TODO - Future improvements
 
-- Use dataframe or list object as input to the text tagger
-- import yaml file with dictionary of terms
+Some improvements planned to the package. Not necessarily all of them
+will be implemented.
+
+- Use dataframe and list object as input to the text tagger
+- import yaml file with dictionary of terms as categories and
+  description
 - option do add a brief quantitative description of the categories and
   words marked in two options: in the html coded text or in a separated
   file.
 - Maybe to make easier to pickup a color
-- a live render with a shiny app
+- Visualize the color palettes
+- a live render and/or a web app in Shiny
 - integrate with NER of SpacyR
+- Use a word embeddings suggestion system of new terms to the
+  categories.
 - Use Large Language Model, probably with {rollama}, helping to codify
   text.

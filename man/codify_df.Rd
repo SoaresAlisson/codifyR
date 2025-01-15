@@ -2,9 +2,9 @@
 % Please edit documentation in R/color.R
 \name{codify_df}
 \alias{codify_df}
-\title{codify text with categories from a dataframe}
+\title{Codify text with categories from a dataframe}
 \usage{
-codify_df(text, categories)
+codify_df(text, df_categories)
 }
 \arguments{
 \item{text}{text to be tagged}

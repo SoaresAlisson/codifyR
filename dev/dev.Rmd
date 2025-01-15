@@ -13,7 +13,7 @@ text <- sotu_text[240]
 ```{r available}
 available::available("codifyR") # TRUE
 ```
-```{r usethis::use_readme_rm /  vignette}
+```{r build_readme/  vignette}
 usethis::use_readme_rmd()
 devtools::build_vignettes("vignettes")
 devtools::build_vignettes("vignettes/codifing.Rmd")
@@ -35,6 +35,7 @@ pkgdown::build_site_github_pages()
 ## country code
 ```{r countrycode select}
 library(countrycode)
+
 codelist_panel |>
   select(ar5) |>
   count(ar5)
@@ -48,10 +49,11 @@ continent_country <- codelist_panel |>
   select(continent, country.name.en) |>
   unique() |>
   arrange(continent)
+
 continent_country <- codelist_panel |>
   select(eurocontrol_pru, country.name.en) |>
   unique() |>
-  arrange(eurocontrol_pru) |> 
+  arrange(eurocontrol_pru) |>
   rename(continent = eurocontrol_pru, country = country.name.en)
 ```
 col 1: categoria, 
@@ -64,15 +66,15 @@ DF <- continent_country
 DF |> filter()
 ```
 ```{r fun colorize}
-colorize <- function(DF, colors = color_palette ) {
-# todo checar n de colunas?
-  colors  <- colors[1:nrow(DF)]
+colorize <- function(DF, colors = color_palette) {
+  # todo checar n de colunas?
+  colors <- colors[1:nrow(DF)]
 
-  DF |> dplyr::mutate(color = colors )
-# colors  
+  DF |> dplyr::mutate(color = colors)
+  # colors
 }
 
-colorize(DF2)  |> pull(color)
+colorize(DF2) |> pull(color)
 ```
 ```{r DF2  }
 cols <- colnames(DF)
@@ -82,111 +84,177 @@ DF2 <- DF |>
   # group_by( !!cols[1] ) |>
   # with(cols[1], group_by() )  |>
   # summarise(items := !!{{paste(cols[2]}} , collapse = "|"))
-  summarise(items = paste(eval(sym(cols[2])), collapse = "|")) |> 
-# summarise(items = paste(country.name.en, collapse = "|"))
-  colorize(color_palette3) |> 
-  # as.data.frame() |> 
+  summarise(items = paste(eval(sym(cols[2])), collapse = "|")) |>
+  # summarise(items = paste(country.name.en, collapse = "|"))
+  colorize(color_palette3) |>
+  # as.data.frame() |>
   nothing()
 ```
 ```{r color_text}
-text  |>
- color_text( 
-    pattern = DF2[1,2], 
-    # color_txt = "yellow", 
-    color_txt = DF2[1, "color"], 
-    mouseover_txt = DF2[1,1]) |> 
- color_text( 
-    pattern = DF2[2,2], 
-    color_txt = DF2[2, "color"], 
-    mouseover_txt = DF2[2,1]) |> 
- color_text( 
-    pattern = DF2[3,2], 
-    color_txt = DF2[3, "color"], 
-    mouseover_txt = DF2[3,1]) |> 
- color_text(  
-    pattern = DF2[4,2], 
-    color_txt = DF2[4, "color"], 
-    mouseover_txt = DF2[4,1]) |> 
- color_text(  
-    pattern = DF2[5,2], 
-    color_txt = DF2[5, "color"], 
-    mouseover_txt = DF2[5,1]) |> 
- color_text(  
-    pattern = DF2[6,2], 
-    color_txt = DF2[6, "color"], 
-    mouseover_txt = DF2[6,1]) |> 
- color_text(  
-    pattern = DF2[7,2], 
-    color_txt = DF2[7, "color"], 
-    mouseover_txt = DF2[7,1]) |> 
- color_text(  
-    pattern = DF2[8,2], 
-    color_txt = "yellow", 
-    # color_txt = DF2[8, "color"], 
-    mouseover_txt = DF2[8,1]) |> 
- # color_text(  
- #    # pattern = DF2[8,2], 
- #    pattern = "Antigua & Barbuda|Argentina|Bahamas|Barbados|Belize|Bolivia|Brazil|Chile|Colombia|Costa Rica|Cuba|Dominica|Dominican Republic|Ecuador|El Salvador|Grenada |Guatemala|Guyana|Haiti|Honduras|Jamaica|Mexico|Nicaragua|Panama|Paraguay|Peru|St. Kitts & Nevis|St. Lucia|St. Vincent & Grenadines|Suriname|Trinidad & Tobago|Uruguay|Venezuela", 
- #    color_txt = DF2[8, "color"], 
- #    # mouseover_txt = DF2[8,1]) |> 
- #    mouseover_txt = "Sudamerica") |> 
-# }) |> unlist()  |> paste(collapse = " ")  |> 
+text |>
+  color_text(
+    pattern = DF2[1, 2],
+    # color_txt = "yellow",
+    color_txt = DF2[1, "color"],
+    mouseover_txt = DF2[1, 1]
+  ) |>
+  color_text(
+    pattern = DF2[2, 2],
+    color_txt = DF2[2, "color"],
+    mouseover_txt = DF2[2, 1]
+  ) |>
+  color_text(
+    pattern = DF2[3, 2],
+    color_txt = DF2[3, "color"],
+    mouseover_txt = DF2[3, 1]
+  ) |>
+  color_text(
+    pattern = DF2[4, 2],
+    color_txt = DF2[4, "color"],
+    mouseover_txt = DF2[4, 1]
+  ) |>
+  color_text(
+    pattern = DF2[5, 2],
+    color_txt = DF2[5, "color"],
+    mouseover_txt = DF2[5, 1]
+  ) |>
+  color_text(
+    pattern = DF2[6, 2],
+    color_txt = DF2[6, "color"],
+    mouseover_txt = DF2[6, 1]
+  ) |>
+  color_text(
+    pattern = DF2[7, 2],
+    color_txt = DF2[7, "color"],
+    mouseover_txt = DF2[7, 1]
+  ) |>
+  color_text(
+    pattern = DF2[8, 2],
+    color_txt = "yellow",
+    # color_txt = DF2[8, "color"],
+    mouseover_txt = DF2[8, 1]
+  ) |>
+  # color_text(
+  #    # pattern = DF2[8,2],
+  #    pattern = "Antigua & Barbuda|Argentina|Bahamas|Barbados|Belize|Bolivia|Brazil|Chile|Colombia|Costa Rica|Cuba|Dominica|Dominican Republic|Ecuador|El Salvador|Grenada |Guatemala|Guyana|Haiti|Honduras|Jamaica|Mexico|Nicaragua|Panama|Paraguay|Peru|St. Kitts & Nevis|St. Lucia|St. Vincent & Grenadines|Suriname|Trinidad & Tobago|Uruguay|Venezuela",
+  #    color_txt = DF2[8, "color"],
+  #    # mouseover_txt = DF2[8,1]) |>
+  #    mouseover_txt = "Sudamerica") |>
+  # }) |> unlist()  |> paste(collapse = " ")  |>
   build_html(title_page = "SOTU - Trump", name = "./dev/sotu_.html")
 ```
 ```{r color_text debug}
-text  |>
- # color_text( 
- #    pattern = DF2[2,2], 
- #    color_txt = DF2[2, "color"], 
- #    mouseover_txt = DF2[2,1]) |> 
- # color_text(  
- #    pattern = DF2[6,2], 
- #    color_txt = DF2[6, "color"], 
- #    mouseover_txt = DF2[6,1]) |> 
- color_text(  
-    # pattern = DF2[8,2], 
-    pattern = "Antigua & Barbuda|Argentina|Bahamas|Barbados|Belize|Bolivia|Brazil|Chile|Colombia|Costa Rica|Cuba|Dominica|Dominican Republic|Ecuador|El Salvador|Grenada |Guatemala|Guyana|Haiti|Honduras|Jamaica|Mexico|Nicaragua|Panama|Paraguay|Peru|St. Kitts & Nevis|St. Lucia|St. Vincent & Grenadines|Suriname|Trinidad & Tobago|Uruguay|Venezuela", 
-    color_txt = DF2[8, "color"], 
-    # mouseover_txt = DF2[8,1]) |> 
-    mouseover_txt = "Sudamerica") |> 
-# }) |> unlist()  |> paste(collapse = " ")  |> 
+text |>
+  # color_text(
+  #    pattern = DF2[2,2],
+  #    color_txt = DF2[2, "color"],
+  #    mouseover_txt = DF2[2,1]) |>
+  # color_text(
+  #    pattern = DF2[6,2],
+  #    color_txt = DF2[6, "color"],
+  #    mouseover_txt = DF2[6,1]) |>
+  color_text(
+    # pattern = DF2[8,2],
+    pattern = "Antigua & Barbuda|Argentina|Bahamas|Barbados|Belize|Bolivia|Brazil|Chile|Colombia|Costa Rica|Cuba|Dominica|Dominican Republic|Ecuador|El Salvador|Grenada |Guatemala|Guyana|Haiti|Honduras|Jamaica|Mexico|Nicaragua|Panama|Paraguay|Peru|St. Kitts & Nevis|St. Lucia|St. Vincent & Grenadines|Suriname|Trinidad & Tobago|Uruguay|Venezuela",
+    color_txt = DF2[8, "color"],
+    # mouseover_txt = DF2[8,1]) |>
+    mouseover_txt = "Sudamerica"
+  ) |>
+  # }) |> unlist()  |> paste(collapse = " ")  |>
   build_html(title_page = "SOTU - Trump", name = "./dev/sotu_.html")
 ```
 ```{r fun}
 # x =1
 text2 <- text
-  # text2 <-
-  lapply(1:nrow(DF2), \(x) {
- color_text(text = text2 , 
-    pattern = DF2[x,2], 
-    # color_txt = "yellow", 
-    color_txt = DF2[x, "color"], 
-    mouseover_txt = DF2[x,1])
-}) |> unlist()  |> paste(collapse = " ")  |> 
+# text2 <-
+lapply(1:nrow(DF2), \(x) {
+  color_text(
+    text = text2,
+    pattern = DF2[x, 2],
+    # color_txt = "yellow",
+    color_txt = DF2[x, "color"],
+    mouseover_txt = DF2[x, 1]
+  )
+}) |>
+  unlist() |>
+  paste(collapse = " ") |>
   build_html(title_page = "SOTU - Trump", name = "./dev/sotu_.html")
 ```
-```{r fun}
-codify <- function(text, categories ) {
+```{r fun codify_df}
+codify <- function(text, categories) {
   # categories <-  DF2[1:8,]
+  # categories <-  continent_country
   categories <- categories |> as.data.frame()
+  c_names <- colnames(categories)
 
-  for (i in 1:nrow(categories) ){
-    # message(i, "|#|", DF2[i,2], "|#|", DF2[i,"color"], "|>|",  DF2[i,1])
-    # message(" ")
-    text <- text |>  
-      color_text(  
-        pattern = DF2[i,2], 
-        color_txt = DF2[i, "color"], 
-        mouseover_txt = DF2[i,1]) 
+  if ("color" %in% c_names) {
+    categories |> colorize()
+
+  }
+
+    for (i in 1:nrow(categories)) {
+      # message(i, "|#|", DF2[i,2], "|#|", DF2[i,"color"], "|>|",  DF2[i,1])
+      # message(" ")
+      text <- text |>
+        color_text(
+          pattern = DF2[i, 2],
+          color_txt = DF2[i, "color"],
+          mouseover_txt = DF2[i, 1]
+        )
+    }
   }
   return(text)
 }
 
-codify(text, DF2[1:8,]) |> 
+codify(text, DF2[1:8, ]) |>
   build_html(title_page = "SOTU - Trump", name = "./dev/sotu_.html")
-
-
 ```
+```{r append country continent}
+unique(continent_country$continent)
+
+DF_append <- tribble(
+  ~continent, ~country,
+  "Northern America", "U\\.S\\.(A\\.)?|United States (of America)?|North America",
+  "Southern America", "South America",
+  "Middle East", "Middle Eeast",
+  "Eurocontrol", "Europ",
+  "Africa", "Africa",
+  "Asia", "Asia"
+)
+
+continent_country <- continent_country |> rbind(DF_append)
+```
+```{r fun combine/collapse categories}
+#' given a dataframe with categories, it collapses the categories into one line in regex pattern
+collapse_categories <- function(DF) {
+  col_names <- colnames(DF)
+
+  DF |>
+    # group_by( continent ) |>
+    group_by(category = eval(sym(col_names[1]))) |>
+    summarise(items = paste(eval(sym(col_names[2])), collapse = "|"))
+}
+collapse_categories(continent_country)
+```
+```{r}
+continent_country |>
+  collapse_categories() |>
+  colorize(color_palette) |>
+  codify_df(text, df_categories = _) |>
+  build_html(title_page = "SOTU - Trump", name = "./dev/sotu_.html")
+```
+```{r fun words categories}
+collapse_words <- function(text) {
+  sto::s2v(text) |> paste(collapse = "|")
+}
+
+
+conslusao <- s2v("(?i)Conclus[aã]o conclui-se por_conseguinte portanto") |> paste(collapse = "|")
+```
+
+
+
+
 
 
 

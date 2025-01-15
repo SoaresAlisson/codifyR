@@ -2,14 +2,14 @@
 % Please edit documentation in R/color.R
 \name{colorize}
 \alias{colorize}
-\title{create a discrete color column}
+\title{Create a discrete color column}
 \usage{
-colorize(DF, colors = color_palette)
+colorize(df_categories, colors = color_palette)
 }
 \arguments{
-\item{DF}{}
+\item{DF}{a dataframe with categories}
 
-\item{colors.}{A vector of colors. It is possible to use the pre built 
+\item{colors.}{A vector of colors. It is possible to use the pre built
 color_palette, color_palette2 or color_palette3 or to create your own, using
 .html color names or hex colors.}
 }
