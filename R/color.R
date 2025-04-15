@@ -1,15 +1,19 @@
 # html color names see https://www.w3schools.com/colors/colors_names.asp
 #
-#' A discrete color palette
+#' A discrete color palette - 1
+#' @export
 color_palette <- c("#e9df5f", "#ffb3ba", "#ffdfba", "#baffc9", "#bae1ff", "#c9c9ff", "#f1cbff", "#e1f7d5", "#c3cb71", "#96ead7", "#ffbdbd", "#68c4af", "#feffa3", "#ffd4e5", "#ffffba")
 
-#' A discrete color palette
+#' A discrete color palette - 2
+#' @export
 color_palette2 <- c("yellow", "bisque", "palegreen", "salmon", "paleturquoise", "violet", "yellowgreen", "thistle", "sienna", "gold", "slateblue", "seagreen", "snow", "tan", "aquamarine", "coral", "brown")
 
-#' A discrete color palette
+#' A discrete color palette -3
+#' @export
 color_palette3 <- c("DarkSeaGreen", "DarkTurquoise", "Gold", "GreenYellow", "HotPink", "LightGreen", "LightSeaGreen", "LightSalmon", "MediumAquaMarine", "Peru", "Wheat", "SteelBlue", "Orange", "Cyan")
 
-#' A discrete color palette
+#' A discrete color palette - 4
+#' @export
 color_palette4 <- c("#1F77B4", "#FF7F0E", "#2CA02C", "#D62728", "#9467BD", "#8C564B", "#E377C2", "#7F7F7F", "#BCBD22", "#17BECF")
 
 # text color tagger

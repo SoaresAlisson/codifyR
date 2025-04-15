@@ -2,5 +2,9 @@
 
 export(build_html)
 export(codify_df)
+export(color_palette)
+export(color_palette2)
+export(color_palette3)
+export(color_palette4)
 export(color_text)
 export(colorize)

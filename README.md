@@ -58,7 +58,7 @@ Option 2: install using
 
 ``` r
 # install.packages("pak")
-pak::pkg_install("SoaresAlisson/txtnet")
+pak::pkg_install("SoaresAlisson/codifyR)
 ```
 
 See the vignettes and function references at the [web page of the
@@ -83,3 +83,7 @@ will be implemented.
   categories.
 - Use Large Language Model, probably with {rollama}, helping to codify
   text.
+
+## Similar projects:
+
+- [highlightr](https://github.com/JBGruber/highlightr)

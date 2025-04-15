@@ -112,7 +112,7 @@ page_html <- text |>
 writeLines(page_html, "sotu.html")
 ```
 
-We go back to the webbrowser, and refresh it with F5 bottom. We get something like this:
+We go back to the web browser, and refresh it with F5 bottom. We get something like this:
 
 ![sotu Trump ex:2](sotu_trump_ex2.png)
 
@@ -124,7 +124,8 @@ library(countrycode)
 
 
 
-# See also
+# See also similar projects 
+The package [highlightr](https://github.com/JBGruber/highlightr) also highlight/codify text in R.
 
 The package [handcodeR](https://github.com/liserman/handcodeR/) open a web based app (Shiny), that allows to annotate text in a interactive way, specifying different categories. Its focus is to manually classify texts one by one. 
 On the other hand, {codifyR} aims to tag categories of words into text, all at once.
